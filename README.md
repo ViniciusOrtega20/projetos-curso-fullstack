@@ -6,7 +6,7 @@ Bem-vindo ao meu repositório! Aqui estão os desafios e projetos que estou dese
 
 Este repositório está organizado por fases do curso, facilitando a navegação e a compreensão dos conteúdos abordados.
 
-- **html-css**: Projetos e desafios com HTML e CSS puros.
+- **html-css**: Projetos e desafios com HTML e CSS.
 
 ## Sobre o Curso
 
