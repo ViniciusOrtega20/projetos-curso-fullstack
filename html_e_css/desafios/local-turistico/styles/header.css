@@ -1,0 +1,19 @@
+header > div > p { 
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font: var(--text-subtitle);
+    color: var(--text-secundary-color);
+    padding-inline: 30px;
+    line-height: 1.6;
+}
+
+.container-titulo { 
+    margin-block: 40px;
+}
+
+.imagem-descricao { 
+    border-radius: 28px;
+    width: 1120px;
+    margin-block: 24px;
+}

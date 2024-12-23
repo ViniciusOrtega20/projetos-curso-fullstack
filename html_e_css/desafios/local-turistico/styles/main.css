@@ -1,0 +1,21 @@
+main { 
+    display: flex;
+    flex-direction: column;
+    padding-block: 40px;
+}
+
+.titulo-conteudo { 
+    margin-block: 64px;
+}
+
+.card { 
+    margin-top: 48px;
+}
+
+div > span { 
+    font: bold 16px var(--font-family);
+} 
+
+li { 
+    margin-left: 10px;
+}
