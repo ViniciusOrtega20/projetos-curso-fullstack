@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header { 
+    background-image: url(../assets/images/Background_Intro.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 1050px;
+}
