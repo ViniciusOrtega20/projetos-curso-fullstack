@@ -2,7 +2,7 @@ header {
     background-image: url(../assets/images/Background_Intro.png);
     background-size: cover;
     background-repeat: no-repeat;
-    height: 750px;
+    height: 550px;
     display: flex;
     padding-top: 50px;
 
@@ -103,5 +103,5 @@ header {
 #icon-arrow{ 
     display: flex;
     justify-content: center;
-    margin-top: 154px;
+    padding-block: 94px;
 }

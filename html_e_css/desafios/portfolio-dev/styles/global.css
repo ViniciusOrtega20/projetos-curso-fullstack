@@ -18,6 +18,11 @@
     --base-gray-500-color: #C0C4CE;
     --base-gray-600-color: #E2E4E9;
 
+    --footer-linkedin-color: #1767c2;
+    --footer-instagram-color: #e45261;
+    --footer-github-color: #f0f6fc;
+    --footer-email-color: #226cbd;
+
     --font-family-asap: "Asap", serif;
     --title-lg: bold 56px/120% var(--font-family-asap);
     --title-md: bold 24px/120% var(--font-family-asap);
@@ -34,11 +39,26 @@
 .container { 
     max-width: 1040px;
     margin-inline: auto;
+    margin-bottom: 56px;
     display: flex;
     flex-direction: column;
-    /* border: solid 1px red; */
+    align-items: center;
+}
+
+.container-grid { 
+    max-width: 1040px;
+    margin-inline: auto;
+    margin-bottom: 144px;
 }
 
 .bg-base-gray-300 { 
     background-color: var(--base-gray-300-color);
+}
+
+.bg-base-gray-200 { 
+    background-color: var(--base-gray-200-color);
+}
+
+.bg-base-gray-100 { 
+    background-color: var(--base-gray-100-color);
 }
