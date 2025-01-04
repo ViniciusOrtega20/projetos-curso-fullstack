@@ -51,8 +51,9 @@ header {
 
 #technologies { 
     display: flex;
+    justify-content: space-between; 
     justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
     gap: 16px;
     margin-top: 80px;
     
@@ -62,8 +63,7 @@ header {
         object-fit: cover;
     }
 
-    a { 
-        text-decoration: none;
+    div { 
         color: var(--base-gray-500-color);
         font: var(--text-md);
         display: flex;
