@@ -70,7 +70,7 @@ input {
         color: var(--text-primary);
     }
 
-    &:focus:invalid {
+    &:focus:invalid, &:not(:focus):invalid{
         border: 0.125rem solid var(--semantic-error);
     }
 
@@ -82,7 +82,7 @@ input {
         margin-top: .30rem;
     }
 
-    &[required]+.error {
+    &[required]+.error, &:not(:focus):invalid + .error{
         display: flex;
         align-items: center;
         gap: .30rem;
@@ -95,5 +95,5 @@ input {
     
     &:not(:focus):valid + .error, &:not(:focus):empty + .error, &:valid + .error { 
         display: none;
-    }
+    } 
 }
