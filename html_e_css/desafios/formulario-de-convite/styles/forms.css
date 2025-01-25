@@ -1,0 +1,34 @@
+@import url(fields/index.css);
+
+
+
+fieldset { 
+    border: none;
+    display: grid;
+    gap: 1.5rem;
+    font: var(--text-heading-sm);
+    color: var(--text-heading-color);
+
+    & .title-fieldset { 
+        display: flex;
+        gap: .75rem;
+        & img { 
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    
+        & legend { 
+            margin-bottom: 1.5rem;
+            
+        }
+    }
+
+}
+
+.input-wrapper, 
+.radio-wrapper { 
+    font: var(--text-body-sm);
+    color: var(--text-body-color);
+    margin-bottom: 1rem;
+
+}

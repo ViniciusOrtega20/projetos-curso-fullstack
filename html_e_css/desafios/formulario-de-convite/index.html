@@ -1,11 +1,251 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de convite</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Archivo:ital,wght@0,100..900;1,100..900&family=Asap:ital,wght@0,100..900;1,100..900&family=Baloo+2:wght@400..800&family=Inconsolata:wght@200..900&family=Leckerli+One&family=Maven+Pro:wght@400..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
+    <div id="app">
+        <aside>
+           <div class="title">
+                <img src="assets/images/Logo.png" alt="Logo de festa">
+                <div class="text">
+                    <h1>Festivite</h1>
+                    <span>Crie um convite digital para o seu evento</span>
+                </div>
+           </div>
+        </aside>
+        <main>
+            <div class="container">
+                <h1>Crie seu convite</h1>
+
+                <form action="" method="post" enctype="multipart/form-data" id="form-convite">
+                    <fieldset>
+                        <div class="title-fieldset">
+                            <img src="assets/icons/calendar.svg" alt="Icone calendário">
+                            <legend>Sobre o evento</legend>
+                        </div>
+                       
+                        <div class="input-wrapper">
+                            <label for="title">Título</label>
+                            <input type="text" id="title" name="title" placeholder="Nome do evento">
+                        </div>
+
+                        <div class="grid">
+                            <div class="input-wrapper">
+                                <label for="inicio">Inicio</label>
+                                <input type="text" id="inicio" name="inicio" placeholder="DD/MM/AAAA, --:--" onfocus="(this.type='date')" onblur="(this.type='text')">
+                            </div>
     
+                            <div class="input-wrapper">
+                                <label for="fim">Fim</label>
+                                <input type="text" id="fim" name="fim" placeholder="DD/MM/AAAA, --:--" onfocus="(this.type='date')" onblur="(this.type='text')">
+                            </div>
+                        </div>              
+                        
+                        <div class="grid">
+                            <div class="radio-wrapper">
+                                <label for="tipo">Tipo</label>
+                                <div class="radio-grid-columns">                                   
+                                    <div class="radio-inner">
+                                        <label for="presencial">
+                                            <img src="assets/icons/building-2.svg" alt="Icone presencial">
+                                            Presencial
+                                        </label>
+                                        <input type="radio" id="presencial" name="opcao_tipo" form="form-convite" value="1">
+                                    </div>
+                                    <div class="radio-inner">
+                                        <label for="remoto">
+                                            <img src="assets/icons/video.svg" alt="Icone remoto">
+                                            Remoto
+                                        </label>
+                                        <input type="radio" id="remoto" name="opcao_tipo" form="form-convite" value="2">
+                                    </div>                          
+                                </div>
+                            </div>
+    
+                            <div class="input-wrapper">
+                                <label for="local">Local</label>
+                                <input type="text" id="local" name="local" placeholder="Link ou endereço">
+                            </div>
+                        </div> 
+                        <div class="input-wrapper">
+                            <label for="descricao">Descrição</label>
+                            <textarea type="text" id="descricao" name="descricao" rows="10" placeholder="Escreva sobre os detalhes do evento"></textarea>
+                        </div>                  
+                    </fieldset>
+
+                    <fieldset>
+                        <div class="title-fieldset">
+                            <img src="assets/icons/paintbrush-vertical.svg" alt="Icone pincel">
+                            <legend>Personalização</legend>
+                        </div>
+                        <div class="color-wrapper">
+                            <label for="color-selection" class="title-body">Cor principal</label>
+                            
+                            <div class="colors-group">
+                                <div class="color-inner">
+                                    <input type="radio" name="color-selection" id="cor1">
+                                    <label for="cor1" class="color1"></label>
+                                </div>
+                                <div class="color-inner">
+                                    <input type="radio" name="color-selection" id="cor2">
+                                    <label for="cor2" class="color2"></label>
+                                </div>
+                                <div class="color-inner">
+                                    <input type="radio" name="color-selection" id="cor3" checked>
+                                    <label for="cor3" class="color3"></label>
+                                </div>
+                                <div class="color-inner">
+                                    <input type="radio" name="color-selection" id="cor4">
+                                    <label for="cor4" class="color4"></label>
+                                </div>
+                                <div class="color-inner">
+                                    <input type="radio" name="color-selection" id="cor5">
+                                    <label for="cor5" class="color5"></label>
+                                </div>
+                                <div class="color-inner">
+                                    <input type="radio" name="color-selection" id="cor6">
+                                    <label for="cor6" class="color6"></label>
+                                </div>
+                                <div class="color-inner">
+                                    <input type="radio" name="color-selection" id="cor7">
+                                    <label for="cor7" class="color7"></label>
+                                </div>
+                                <div class="color-inner">
+                                    <input type="radio" name="color-selection" id="cor8">
+                                    <label for="cor8" class="color8"></label>
+                                </div>
+                                <div class="color-inner">
+                                    <input type="radio" name="color-selection" id="cor9">
+                                    <label for="cor9" class="color9"></label>
+                                </div>
+                                <div class="color-inner">
+                                    <input type="radio" name="color-selection" id="cor10">
+                                    <label for="cor10" class="color10"></label>
+                                </div>
+                                <div class="color-inner">
+                                    <input type="radio" name="color-selection" id="cor11">
+                                    <label for="cor11" class="color11"></label>
+                                </div>
+                            </div>              
+                        </div>
+                        <div class="theme-wrapper">
+                            <label for="theme-selection" class="title-body">Tema do evento</label>
+
+                            <div class="themes-group">
+                                <div class="theme-inner">
+                                    <input type="radio" name="theme-selection" id="theme-aniversario" checked>
+                                    <label for="theme-aniversario">
+                                        <img src="assets/images/Image-1.png" alt="Imagem de aniversário">
+                                        Aniversário
+                                    </label>
+                                </div>
+    
+                                <div class="theme-inner">
+                                    <input type="radio" name="theme-selection" id="theme-infantil">
+                                    <label for="theme-infantil">
+                                        <img src="assets/images/Image-2.png" alt="Imagem infantil">
+                                        Infantil
+                                    </label>
+                                </div>
+    
+                                <div class="theme-inner">
+                                    <input type="radio" name="theme-selection" id="theme-formatura">
+                                    <label for="theme-formatura">
+                                        <img src="assets/images/Image-3.png" alt="Imagem de formatura">
+                                        Formatura
+                                    </label>
+                                </div>
+
+                                <div class="theme-inner">
+                                    <input type="radio" name="theme-selection" id="theme-casamento">
+                                    <label for="theme-casamento">
+                                        <img src="assets/images/Image-4.png" alt="Imagem de casamento">
+                                        Casamento
+                                    </label>
+                                </div>
+
+                                <div class="theme-inner">
+                                    <input type="radio" name="theme-selection" id="theme-cha-de-bebe">
+                                    <label for="theme-cha-de-bebe">
+                                        <img src="assets/images/Image-5.png" alt="Imagem de chá de bebe">
+                                        Chá de bebê
+                                    </label>
+                                </div>
+
+                                <div class="theme-inner">
+                                    <input type="radio" name="theme-selection" id="theme-cha-de-panela">
+                                    <label for="theme-cha-de-panela">
+                                        <img src="assets/images/Image-6.png" alt="Imagem de chá de panela">
+                                        Chád e panela
+                                    </label>
+                                </div>
+
+                                <div class="theme-inner">
+                                    <input type="radio" name="theme-selection" id="theme-carnaval">
+                                    <label for="theme-carnaval">
+                                        <img src="assets/images/Image-7.png" alt="Imagem de carnaval">
+                                        Carnaval
+                                    </label>
+                                </div>
+
+                                <div class="theme-inner">
+                                    <input type="radio" name="theme-selection" id="theme-pascoa">
+                                    <label for="theme-pascoa">
+                                        <img src="assets/images/Image-8.png" alt="Imagem de páscoa">
+                                        Páscoa
+                                    </label>
+                                </div>
+
+                                <div class="theme-inner">
+                                    <input type="radio" name="theme-selection" id="theme-sao-joao">
+                                    <label for="theme-sao-joao">
+                                        <img src="assets/images/Image-9.png" alt="Imagem de São João">
+                                        São João
+                                    </label>
+                                </div>
+
+                                <div class="theme-inner">
+                                    <input type="radio" name="theme-selection" id="theme-halloween">
+                                    <label for="theme-halloween">
+                                        <img src="assets/images/Image-10.png" alt="Imagem de Halloween">
+                                        Halloween
+                                    </label>
+                                </div>
+
+                                <div class="theme-inner">
+                                    <input type="radio" name="theme-selection" id="theme-natal">
+                                    <label for="theme-natal">
+                                        <img src="assets/images/Image-11.png" alt="Imagem de Natal">
+                                        Natal
+                                    </label>
+                                </div>
+
+                                <div class="theme-inner">
+                                    <input type="radio" name="theme-selection" id="theme-outro">
+                                    <label for="theme-outro">
+                                        <img src="assets/images/Image-12.png" alt="Imagem de Outro">
+                                        Outro
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="theme-style">
+                            <label for="theme-selection" class="title-body">Estilo</label>
+                            
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </main>
+    </div>
 </body>
 </html>

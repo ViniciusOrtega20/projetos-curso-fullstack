@@ -1,0 +1,42 @@
+#app { 
+    background-color: #1E1E1E;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+
+    height: 100vh;
+}
+
+aside { 
+    background-image: url(../assets/images/Background.png);
+    height: 45.5rem;
+    border-radius: 2%;
+
+    .title { 
+        padding: 2rem;
+    }
+
+    & h1 { 
+        font: var(--text-logo);
+        color: var(--accent-pink-color);
+    }
+
+    & span { 
+        font: var(--text-heanding-md);
+        color: var(--text-body-color);
+    }
+
+}
+
+main { 
+    display: flex;
+    justify-content: center;
+    padding-block: 5rem;
+    background-color: var(--shape-body-color);
+    border-radius: 0.80rem;
+
+
+    .container { 
+        width: 60rem;
+    }
+}
