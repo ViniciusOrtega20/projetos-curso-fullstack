@@ -1,9 +1,6 @@
-package br.com.estudos.gestao_vagas.modules.candidates;
+package br.com.estudos.gestao_vagas.modules.company.entities;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,26 +12,13 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-/**
- * Representa um candidato no sistema com suas informações básicas e
- * credenciais.
- * <p>
- * Esta entidade contém dados pessoais e de autenticação do candidato, além de
- * uma descrição e currículo associados.
- * </p>
- *
- * @author Vinicius Ortega
- */
+@Entity(name = "company")
 @Data
-@Entity(name = "candidate")
-public class CandidateEntity {
+public class CompanyEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
-    private String name;
-
     /**
      * Nome de usuário para autenticação. Não pode estar vazio ou conter
      * espaços.
@@ -52,13 +36,10 @@ public class CandidateEntity {
     /**
      * Senha com tamanho entre 10 e 30 caracteres.
      */
-    @Size(min = 10, max = 30, message = "O campo [password] deve ter entre 10 e 30 caracteres")
+    @Size(min = 10, max = 80, message = "O campo [password] deve ter entre 10 e 80 caracteres")
     private String password;
-
+    private String website;
+    private String cnpj;
+    private String name;
     private String description;
-
-    private String curriculo;
-
-    @CreationTimestamp
-    private LocalDateTime createdAt;
 }
