@@ -1,4 +1,4 @@
-package br.com.estudos.gestao_vagas.modules.candidates;
+package br.com.estudos.gestao_vagas.modules.candidates.entities;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -35,24 +35,14 @@ public class CandidateEntity {
 
     private String name;
 
-    /**
-     * Nome de usuário para autenticação. Não pode estar vazio ou conter
-     * espaços.
-     */
     @NotBlank(message = "O campo [username] não pode estar vazio")
     @Pattern(regexp = "\\S+", message = "O campo [username] não deve conter espaços")
     private String username;
 
-    /**
-     * Email válido do candidato.
-     */
     @Email(message = "O campo [email] deve conter um email válido")
     private String email;
 
-    /**
-     * Senha com tamanho entre 10 e 30 caracteres.
-     */
-    @Size(min = 10, max = 30, message = "O campo [password] deve ter entre 10 e 30 caracteres")
+    @Size(min = 10, max = 80, message = "O campo [password] deve ter entre 10 e 80 caracteres")
     private String password;
 
     private String description;

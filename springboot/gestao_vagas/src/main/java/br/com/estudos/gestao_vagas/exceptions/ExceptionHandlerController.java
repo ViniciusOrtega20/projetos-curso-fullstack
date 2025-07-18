@@ -41,9 +41,17 @@ public class ExceptionHandlerController {
         return new ResponseEntity<>(errorMessageDTO, HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * Manipula a exceção {@link UserFoundException}, que é lançada quando se
+     * tenta cadastrar um usuário que já existe no sistema.
+     *
+     * @param exception a exceção lançada que contém a mensagem de erro
+     * @return um {@link ResponseEntity} com status 400 e o objeto
+     * {@link ErrorMessageDTO}
+     */
     @ExceptionHandler(UserFoundException.class)
     public ResponseEntity<ErrorMessageDTO> handleUserFoundException(UserFoundException exception) {
         ErrorMessageDTO error = new ErrorMessageDTO(exception.getMessage(), null);
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 }
