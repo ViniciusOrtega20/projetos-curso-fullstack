@@ -1,0 +1,7 @@
+main { 
+    & h1 { 
+        font: var(--text-heading-md);
+        color: var(--text-heading-color);
+        margin-bottom: 2.5rem;
+    }
+}
