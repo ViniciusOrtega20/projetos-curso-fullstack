@@ -5,7 +5,6 @@ import br.com.estudos.gestao_vagas.modules.company.dto.AuthCompanyResponseDTO;
 import br.com.estudos.gestao_vagas.modules.company.repositories.CompanyRepository;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,18 +20,19 @@ public class AuthCompanyUseCase {
 
     @Value("${security.token.secret.company}")
     private String secretKey;
+    private final CompanyRepository companyRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private CompanyRepository companyRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    public AuthCompanyUseCase(CompanyRepository companyRepository, PasswordEncoder passwordEncoder) {
+        this.companyRepository = companyRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public AuthCompanyResponseDTO execute(AuthCompanyRequestDTO authCompanyRequestDTO) throws AuthenticationException {
-        var company = this.companyRepository.findByUsername(authCompanyRequestDTO.getUsername()).orElseThrow(
+        var company = this.companyRepository.findByUsername(authCompanyRequestDTO.username()).orElseThrow(
                 () -> new UsernameNotFoundException("Username/password incorrect")
         );
-        var passwordMatches = this.passwordEncoder.matches(authCompanyRequestDTO.getPassword(), company.getPassword());
+        var passwordMatches = this.passwordEncoder.matches(authCompanyRequestDTO.password(), company.getPassword());
 
         if (!passwordMatches) {
             throw new AuthenticationException();
@@ -47,7 +47,7 @@ public class AuthCompanyUseCase {
                 .sign(algorithm);
 
         return AuthCompanyResponseDTO.builder()
-                .acess_token(token)
+                .acessToken(token)
                 .expiresIn(expiredIn.toEpochMilli())
                 .build();
     }

@@ -2,7 +2,6 @@ package br.com.estudos.gestao_vagas.modules.candidates.useCases;
 
 import br.com.estudos.gestao_vagas.modules.candidates.dto.ProfileCandidateResponseDTO;
 import br.com.estudos.gestao_vagas.modules.candidates.repositories.CandidateRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +10,11 @@ import java.util.UUID;
 @Service
 public class ProfileCandidateUseCase {
 
-    @Autowired
-    private CandidateRepository candidateRepository;
+    private final CandidateRepository candidateRepository;
+
+    public ProfileCandidateUseCase(CandidateRepository candidateRepository) {
+        this.candidateRepository = candidateRepository;
+    }
 
     public ProfileCandidateResponseDTO execute(UUID idCandidate) {
         var candidate = this.candidateRepository.findById(idCandidate)

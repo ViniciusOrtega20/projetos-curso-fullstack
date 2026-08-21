@@ -1,12 +1,15 @@
 package br.com.estudos.gestao_vagas.modules.company.dto;
 
-import lombok.Data;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-@Data
+public record CreateJobRequestDTO(
+        @Schema(example = "Dev fullstack", requiredMode = Schema.RequiredMode.REQUIRED)
+        String description,
 
-public class CreateJobRequestDTO {
+        @Schema(example = "GymPass, Plano de saúde e vale refeição", requiredMode = Schema.RequiredMode.REQUIRED)
+        String benefits,
 
-    private String description;
-    private String benefits;
-    private String level;
+        @Schema(example = "Senior", requiredMode = Schema.RequiredMode.REQUIRED)
+        String level
+) {
 }

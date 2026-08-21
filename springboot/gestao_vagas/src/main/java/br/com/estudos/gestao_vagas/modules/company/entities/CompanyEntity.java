@@ -1,7 +1,5 @@
 package br.com.estudos.gestao_vagas.modules.company.entities;
 
-import java.util.UUID;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,12 +8,19 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.UUID;
 
 @Entity(name = "company")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CompanyEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -39,6 +44,8 @@ public class CompanyEntity {
     @Size(min = 10, max = 80, message = "O campo [password] deve ter entre 10 e 80 caracteres")
     private String password;
     private String website;
+
+    @Size(min = 14, max = 14, message = "O campo [CNPJ] deve ter 14 caracteres")
     private String cnpj;
     private String name;
     private String description;

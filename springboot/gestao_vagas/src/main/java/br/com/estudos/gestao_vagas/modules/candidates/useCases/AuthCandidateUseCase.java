@@ -5,7 +5,6 @@ import br.com.estudos.gestao_vagas.modules.candidates.dto.AuthCandidateResponseD
 import br.com.estudos.gestao_vagas.modules.candidates.repositories.CandidateRepository;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,12 +20,13 @@ public class AuthCandidateUseCase {
 
     @Value("${security.token.secret.candidate}")
     private String secretKey;
+    private final CandidateRepository candidateRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private CandidateRepository candidateRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    public AuthCandidateUseCase(CandidateRepository candidateRepository, PasswordEncoder passwordEncoder) {
+        this.candidateRepository = candidateRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public AuthCandidateResponseDTO execute(AuthCandidateRequestDTO authCandidateRequestDTO) throws AuthenticationException {
         var candidate = this.candidateRepository.findByUsername(authCandidateRequestDTO.username()).orElseThrow(
@@ -48,7 +48,7 @@ public class AuthCandidateUseCase {
                 .sign(algorithm);
 
         return AuthCandidateResponseDTO.builder()
-                .acess_token(token)
+                .acessToken(token)
                 .expiresIn(expiresIn.toEpochMilli())
                 .build();
     }

@@ -1,11 +1,14 @@
 package br.com.estudos.gestao_vagas.modules.company.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 
-@Data
-@AllArgsConstructor
-public class AuthCompanyRequestDTO {
-    private String username;
-    private String password;
+public record AuthCompanyRequestDTO(
+
+        @Schema(example = "teste27", requiredMode = Schema.RequiredMode.REQUIRED)
+        @NotNull String username,
+
+        @Schema(example = "teste@1234", requiredMode = Schema.RequiredMode.REQUIRED)
+        @NotNull String password
+) {
 }
