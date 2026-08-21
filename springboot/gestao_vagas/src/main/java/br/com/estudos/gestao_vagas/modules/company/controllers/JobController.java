@@ -1,8 +1,8 @@
 package br.com.estudos.gestao_vagas.modules.company.controllers;
 
 import br.com.estudos.gestao_vagas.config.SwaggerConfig;
-import br.com.estudos.gestao_vagas.modules.company.dto.CreateJobRequestDTO;
-import br.com.estudos.gestao_vagas.modules.company.dto.CreateJobResponseDTO;
+import br.com.estudos.gestao_vagas.modules.company.dto.job.CreateJobRequestDTO;
+import br.com.estudos.gestao_vagas.modules.company.dto.job.CreateJobResponseDTO;
 import br.com.estudos.gestao_vagas.modules.company.entities.JobEntity;
 import br.com.estudos.gestao_vagas.modules.company.useCases.CreateJobUseCase;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,4 +1,4 @@
-package br.com.estudos.gestao_vagas.modules.company.dto;
+package br.com.estudos.gestao_vagas.modules.candidates.dto.auth;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthCompanyResponseDTO {
+public class AuthCandidateResponseDTO {
     @Schema(example = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJqYXZhZ2FzIiwiZXhwIjoxNzg3MjY5MjkyLCJyb2xlcyI6WyJDQU5ESURBVEUiXSwic3ViIjoiNGFlMGEzY2Mt")
     private String acessToken;
 

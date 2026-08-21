@@ -1,6 +1,6 @@
 package br.com.estudos.gestao_vagas.modules.candidates.useCases;
 
-import br.com.estudos.gestao_vagas.modules.candidates.dto.ProfileCandidateResponseDTO;
+import br.com.estudos.gestao_vagas.modules.candidates.dto.profile.ProfileCandidateResponseDTO;
 import br.com.estudos.gestao_vagas.modules.candidates.repositories.CandidateRepository;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

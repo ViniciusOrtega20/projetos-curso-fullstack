@@ -1,5 +1,6 @@
 package br.com.estudos.gestao_vagas.modules.company.entities;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +29,7 @@ public class CompanyEntity {
      * Nome de usuário para autenticação. Não pode estar vazio ou conter
      * espaços.
      */
+    @Schema(example = "Itau27")
     @NotBlank(message = "O campo [username] não pode estar vazio")
     @Pattern(regexp = "\\S+", message = "O campo [username] não deve conter espaços")
     private String username;
@@ -35,6 +37,7 @@ public class CompanyEntity {
     /**
      * Email válido do candidato.
      */
+    @Schema(example = "teste@itau.com")
     @Email(message = "O campo [email] deve conter um email válido")
     private String email;
 

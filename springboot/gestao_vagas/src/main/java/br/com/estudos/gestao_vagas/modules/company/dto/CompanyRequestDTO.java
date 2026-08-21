@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateCompanyRequestDTO {
+public class CompanyRequestDTO {
     @Schema(example = "Itau")
     private String name;
 

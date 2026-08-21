@@ -1,8 +1,8 @@
 package br.com.estudos.gestao_vagas.modules.company.controllers;
 
 import br.com.estudos.gestao_vagas.exceptions.UserFoundException;
-import br.com.estudos.gestao_vagas.modules.company.dto.CreateCompanyRequestDTO;
-import br.com.estudos.gestao_vagas.modules.company.dto.CreateCompanyResponseDTO;
+import br.com.estudos.gestao_vagas.modules.company.dto.CompanyRequestDTO;
+import br.com.estudos.gestao_vagas.modules.company.dto.CompanyResponseDTO;
 import br.com.estudos.gestao_vagas.modules.company.entities.CompanyEntity;
 import br.com.estudos.gestao_vagas.modules.company.useCases.CreateCompanyUseCase;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,11 +35,11 @@ public class CompanyController {
     @ApiResponses(
             @ApiResponse(responseCode = "201", content = {
                     @Content(
-                            schema = @Schema(implementation = CreateCompanyResponseDTO.class)
+                            schema = @Schema(implementation = CompanyResponseDTO.class)
                     )
             })
     )
-    public ResponseEntity<Object> create(@Valid @RequestBody CreateCompanyRequestDTO companyRequestDTO) {
+    public ResponseEntity<Object> create(@Valid @RequestBody CompanyRequestDTO companyRequestDTO) {
         try {
             var companyEntity = CompanyEntity.builder()
                     .username(companyRequestDTO.getUsername())
@@ -51,7 +51,7 @@ public class CompanyController {
                     .description(companyRequestDTO.getDescription())
                     .build();
             var result = this.createCompanyUseCase.execute(companyEntity);
-            return ResponseEntity.status(HttpStatus.CREATED).body(CreateCompanyResponseDTO.from(result));
+            return ResponseEntity.status(HttpStatus.CREATED).body(CompanyResponseDTO.from(result));
         } catch (UserFoundException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }

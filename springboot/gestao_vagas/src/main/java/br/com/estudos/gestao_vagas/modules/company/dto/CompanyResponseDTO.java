@@ -13,7 +13,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateCompanyResponseDTO {
+public class CompanyResponseDTO {
     private UUID id;
 
     @Schema(example = "Itau")
@@ -34,8 +34,8 @@ public class CreateCompanyResponseDTO {
     @Schema(example = "https://itau.com")
     private String website;
 
-    public static CreateCompanyResponseDTO from(CompanyEntity companyEntity) {
-        return CreateCompanyResponseDTO.builder()
+    public static CompanyResponseDTO from(CompanyEntity companyEntity) {
+        return CompanyResponseDTO.builder()
                 .id(companyEntity.getId())
                 .name(companyEntity.getName())
                 .username(companyEntity.getUsername())

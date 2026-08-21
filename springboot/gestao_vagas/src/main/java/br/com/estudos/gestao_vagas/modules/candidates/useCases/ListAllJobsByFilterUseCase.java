@@ -1,9 +1,9 @@
 package br.com.estudos.gestao_vagas.modules.candidates.useCases;
 
+import br.com.estudos.gestao_vagas.modules.company.dto.job.JobResponseListDTO;
 import br.com.estudos.gestao_vagas.modules.company.repositories.JobRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -15,13 +15,9 @@ public class ListAllJobsByFilterUseCase {
         this.jobRepository = jobRepository;
     }
 
-    public List<Object> execute(String filter) {
+    public List<JobResponseListDTO> execute(String filter) {
         var listaJobs = this.jobRepository.findByDescriptionContainingIgnoreCase(filter);
 
-        if (listaJobs.isEmpty()) {
-            return List.of("Não existe job para esse filtro.");
-        }
-
-        return Collections.singletonList(listaJobs);
+        return JobResponseListDTO.from(listaJobs);
     }
 }

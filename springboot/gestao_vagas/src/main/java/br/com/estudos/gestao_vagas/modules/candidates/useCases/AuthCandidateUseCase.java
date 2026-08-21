@@ -1,7 +1,7 @@
 package br.com.estudos.gestao_vagas.modules.candidates.useCases;
 
-import br.com.estudos.gestao_vagas.modules.candidates.dto.AuthCandidateRequestDTO;
-import br.com.estudos.gestao_vagas.modules.candidates.dto.AuthCandidateResponseDTO;
+import br.com.estudos.gestao_vagas.modules.candidates.dto.auth.AuthCandidateRequestDTO;
+import br.com.estudos.gestao_vagas.modules.candidates.dto.auth.AuthCandidateResponseDTO;
 import br.com.estudos.gestao_vagas.modules.candidates.repositories.CandidateRepository;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

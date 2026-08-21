@@ -1,14 +1,14 @@
 package br.com.estudos.gestao_vagas.modules.candidates.controllers;
 
 import br.com.estudos.gestao_vagas.config.SwaggerConfig;
-import br.com.estudos.gestao_vagas.modules.candidates.dto.CreateCandidatoRequestDTO;
-import br.com.estudos.gestao_vagas.modules.candidates.dto.CreateCandidatoResponseDTO;
-import br.com.estudos.gestao_vagas.modules.candidates.dto.ProfileCandidateResponseDTO;
+import br.com.estudos.gestao_vagas.modules.candidates.dto.create.CreateCandidatoRequestDTO;
+import br.com.estudos.gestao_vagas.modules.candidates.dto.create.CreateCandidatoResponseDTO;
+import br.com.estudos.gestao_vagas.modules.candidates.dto.profile.ProfileCandidateResponseDTO;
 import br.com.estudos.gestao_vagas.modules.candidates.entities.CandidateEntity;
 import br.com.estudos.gestao_vagas.modules.candidates.useCases.CreateCandidateUseCase;
 import br.com.estudos.gestao_vagas.modules.candidates.useCases.ListAllJobsByFilterUseCase;
 import br.com.estudos.gestao_vagas.modules.candidates.useCases.ProfileCandidateUseCase;
-import br.com.estudos.gestao_vagas.modules.company.entities.JobEntity;
+import br.com.estudos.gestao_vagas.modules.company.dto.job.JobResponseListDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -103,12 +103,13 @@ public class CandidateController {
     @ApiResponses(
             @ApiResponse(responseCode = "200", content = {
                     @Content(
-                            array = @ArraySchema(schema = @Schema(implementation = JobEntity.class))
+                            array = @ArraySchema(schema = @Schema(implementation = JobResponseListDTO.class))
                     )
             })
+
     )
     @SecurityRequirement(name = SwaggerConfig.SECURITY_SCHEME_NAME)
-    public List<Object> findJobByFilter(@RequestParam String filter) {
+    public List<JobResponseListDTO> findJobByFilter(@RequestParam String filter) {
         return listAllJobsByFilterUseCase.execute(filter);
     }
 }

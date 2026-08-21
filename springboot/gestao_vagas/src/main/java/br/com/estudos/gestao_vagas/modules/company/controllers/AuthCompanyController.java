@@ -1,7 +1,7 @@
 package br.com.estudos.gestao_vagas.modules.company.controllers;
 
-import br.com.estudos.gestao_vagas.modules.company.dto.AuthCompanyRequestDTO;
-import br.com.estudos.gestao_vagas.modules.company.dto.AuthCompanyResponseDTO;
+import br.com.estudos.gestao_vagas.modules.company.dto.auht.AuthCompanyRequestDTO;
+import br.com.estudos.gestao_vagas.modules.company.dto.auht.AuthCompanyResponseDTO;
 import br.com.estudos.gestao_vagas.modules.company.useCases.AuthCompanyUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

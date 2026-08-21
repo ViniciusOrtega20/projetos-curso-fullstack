@@ -1,4 +1,4 @@
-package br.com.estudos.gestao_vagas.modules.candidates.dto;
+package br.com.estudos.gestao_vagas.modules.candidates.dto.create;
 
 import br.com.estudos.gestao_vagas.modules.candidates.entities.CandidateEntity;
 import io.swagger.v3.oas.annotations.media.Schema;

@@ -1,7 +1,7 @@
 package br.com.estudos.gestao_vagas.modules.company.useCases;
 
-import br.com.estudos.gestao_vagas.modules.company.dto.AuthCompanyRequestDTO;
-import br.com.estudos.gestao_vagas.modules.company.dto.AuthCompanyResponseDTO;
+import br.com.estudos.gestao_vagas.modules.company.dto.auht.AuthCompanyRequestDTO;
+import br.com.estudos.gestao_vagas.modules.company.dto.auht.AuthCompanyResponseDTO;
 import br.com.estudos.gestao_vagas.modules.company.repositories.CompanyRepository;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

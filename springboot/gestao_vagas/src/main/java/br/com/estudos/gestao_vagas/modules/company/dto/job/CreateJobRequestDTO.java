@@ -1,4 +1,4 @@
-package br.com.estudos.gestao_vagas.modules.company.dto;
+package br.com.estudos.gestao_vagas.modules.company.dto.job;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
