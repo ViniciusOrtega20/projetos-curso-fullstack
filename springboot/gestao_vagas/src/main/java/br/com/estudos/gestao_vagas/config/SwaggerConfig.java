@@ -21,6 +21,10 @@ import org.springframework.context.annotation.Configuration;
         bearerFormat = "JWT"
 )
 public class SwaggerConfig {
+    private SwaggerConfig() {
+        /* This utility class should not be instantiated */
+    }
+
     public static final String SECURITY_SCHEME_NAME = "jwt_auth";
 
 }

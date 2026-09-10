@@ -1,0 +1,17 @@
+<div id="modal-task-comentario-{{this.id()}}" class="flex flex-col gap-4 max-h-44">
+  <p class="font-light text-sm text-[#374151]">{{ text() }}</p>
+  <div class="flex gap-4 items-center">
+    <p class="text-[#9CA3AF] text-xs">
+      {{ time() }}
+    </p>
+    <button
+      class="font-bold underline underline-offset-2 text-xs active:scale-105 transition-transform duration-75 cursor-pointer"
+      (click)="onRemoveComment()"
+    >
+      Apagar
+    </button>
+  </div>
+  @if (!lastItem()) {
+    <div class="border-b border-[#D1D5DB] mb-4"></div>
+  }
+</div>

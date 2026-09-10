@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import TaskCommentsModal from './task-comments-modal';
+import { ComentarioModal } from './comentario-modal';
 
-describe('TaskCommentsModal', () => {
-  let component: TaskCommentsModal;
-  let fixture: ComponentFixture<TaskCommentsModal>;
+describe('ComentarioModal', () => {
+  let component: ComentarioModal;
+  let fixture: ComponentFixture<ComentarioModal>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TaskCommentsModal],
+      imports: [ComentarioModal],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TaskCommentsModal);
+    fixture = TestBed.createComponent(ComentarioModal);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

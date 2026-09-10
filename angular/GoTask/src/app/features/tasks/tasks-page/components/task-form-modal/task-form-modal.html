@@ -1,1 +1,40 @@
-<p>task-form-modal works!</p>
+<form class="rounded-xl overflow-hidden bg-white" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <div class="flex gap-1 items-center p-4">
+    <img ngSrc="/icons/icon-new-task.svg" alt="New Task" height="16" width="16" />
+    <h1 class="font-semibold text-lg">{{ _data.mode === 'create' ? 'Criar Tarefa' : 'Editar Tarefa' }}</h1>
+    <button class="ml-auto cursor-pointer active:translate-y-0.5 transition-transform duration-75"
+            (click)="closeModal()">
+      <img ngSrc="/icons/icon-close.svg" alt="Close" height="16" width="16" />
+    </button>
+
+  </div>
+  <div class="p-4 border-y border-[#D1D5DB] flex flex-col gap-4">
+    <app-input-form
+      id="modal-task-nome"
+      text="Nome da Tarefa"
+      placeholder="Descreva o que deverá ser feito"
+      msgCampObrigatorio="O campo é obrigatório e precisa ter no minínimo 10 caracteres"
+      [control]="taskForm.controls.name"
+    />
+
+    <app-input-form
+      id="modal-task-descricao"
+      text="Descrição"
+      placeholder="Adicione uma descrição"
+      msgCampObrigatorio="O campo é obrigatório e precisa ter no minínimo 10 caracteres"
+      [control]="taskForm.controls.description"
+    />
+  </div>
+  <div class="p-4 flex justify-end gap-2">
+    <app-secondary-button-form
+      (click)="closeModal()"
+      id="modal-task-cancelar"
+      text="Cancelar"
+    />
+    <app-primary-button-form
+      id="modal-task-salvar"
+      [text]="_data.mode === 'create' ? 'Criar uma tarefa' : 'Salvar alterações'"
+      [disabled]=taskForm.invalid
+    />
+  </div>
+</form>

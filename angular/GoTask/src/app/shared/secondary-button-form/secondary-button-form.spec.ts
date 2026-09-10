@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TaskList } from './task-list';
+import { SecondaryButtonForm } from './secondary-button-form';
 
-describe('TaskList', () => {
-  let component: TaskList;
-  let fixture: ComponentFixture<TaskList>;
+describe('SecondaryButtonForm', () => {
+  let component: SecondaryButtonForm;
+  let fixture: ComponentFixture<SecondaryButtonForm>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TaskList],
+      imports: [SecondaryButtonForm],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TaskList);
+    fixture = TestBed.createComponent(SecondaryButtonForm);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

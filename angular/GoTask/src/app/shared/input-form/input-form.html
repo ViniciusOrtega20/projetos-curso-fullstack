@@ -1,0 +1,15 @@
+<div>
+  <label class="font-semibold text-sm mb-2" for="{{ id() }}">
+    {{ text() }}
+  </label>
+  <input type="text" id="{{ id() }}"
+         class="w-full rounded-lg border border-[#D1D5DB] p-3 text-sm font-light text-[#89919F]"
+         placeholder="{{placeholder()}}"
+         [formControl]="control()"
+  />
+  @if (control().invalid && control().touched) {
+    <p class="text-red-500 text-xs font-semibold">
+      {{ msgCampObrigatorio() }}
+    </p>
+  }
+</div>

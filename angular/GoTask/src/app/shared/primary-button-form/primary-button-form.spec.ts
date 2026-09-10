@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import TaskCommentsModal from './task-comments-modal';
+import { PrimaryButtonForm } from './primary-button-form';
 
-describe('TaskCommentsModal', () => {
-  let component: TaskCommentsModal;
-  let fixture: ComponentFixture<TaskCommentsModal>;
+describe('PrimaryButtonForm', () => {
+  let component: PrimaryButtonForm;
+  let fixture: ComponentFixture<PrimaryButtonForm>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TaskCommentsModal],
+      imports: [PrimaryButtonForm],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TaskCommentsModal);
+    fixture = TestBed.createComponent(PrimaryButtonForm);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
