@@ -3,7 +3,6 @@ package br.com.estudos.gestao_vagas.modules.candidates.useCases;
 import br.com.estudos.gestao_vagas.exceptions.UserFoundException;
 import br.com.estudos.gestao_vagas.modules.candidates.entities.CandidateEntity;
 import br.com.estudos.gestao_vagas.modules.candidates.repositories.CandidateRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +17,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class CreateCandidateUseCase {
 
-    @Autowired
-    private CandidateRepository candidateRepository;
+    private final CandidateRepository candidateRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    public CreateCandidateUseCase(CandidateRepository candidateRepository, PasswordEncoder passwordEncoder) {
+        this.candidateRepository = candidateRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     /**
      * Executa o processo de criação de um novo candidato.

@@ -5,7 +5,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.jspecify.annotations.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,12 +17,14 @@ import java.io.IOException;
 @Component
 public class SecurityCandidateFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private JWTCandidateProvider jwtCandidateProvider;
+    private final JWTCandidateProvider jwtCandidateProvider;
+
+    public SecurityCandidateFilter(JWTCandidateProvider jwtCandidateProvider) {
+        this.jwtCandidateProvider = jwtCandidateProvider;
+    }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-//        SecurityContextHolder.getContext().setAuthentication(null);
+    protected void doFilterInternal(HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
         String header = request.getHeader("Authorization");
 
         if (request.getRequestURI().startsWith("/candidate") && header != null) {

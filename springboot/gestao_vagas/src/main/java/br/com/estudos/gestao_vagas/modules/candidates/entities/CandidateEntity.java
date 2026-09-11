@@ -1,10 +1,5 @@
 package br.com.estudos.gestao_vagas.modules.candidates.entities;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
-
-import org.hibernate.annotations.CreationTimestamp;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,10 +8,17 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
- * Representa um candidato no sistema com suas informações básicas e
+ * Representa um candidato no sistema com as suas informações básicas e
  * credenciais.
  * <p>
  * Esta entidade contém dados pessoais e de autenticação do candidato, além de
@@ -26,13 +28,15 @@ import lombok.Data;
  * @author Vinicius Ortega
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "candidate")
 public class CandidateEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
     private String name;
 
     @NotBlank(message = "O campo [username] não pode estar vazio")
@@ -44,9 +48,7 @@ public class CandidateEntity {
 
     @Size(min = 10, max = 80, message = "O campo [password] deve ter entre 10 e 80 caracteres")
     private String password;
-
     private String description;
-
     private String curriculo;
 
     @CreationTimestamp
