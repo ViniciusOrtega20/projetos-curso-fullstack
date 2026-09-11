@@ -7,10 +7,10 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { ITask } from '../../../../../../../interfaces/task';
-import { TaskStatus } from '../../../../../../../type/task-status';
+import { ITask } from '../../../../../interfaces/task';
+import { TaskStatus } from '../../../../../type/task-status';
 import { TaskStatusEnum } from '../../../../../../../enums/task-status';
-import { Task } from '../../../../../../../services/task';
+import { Task } from '../../../../../services/task';
 
 @Component({
   imports: [TaskCard, CdkDropList, CdkDrag],

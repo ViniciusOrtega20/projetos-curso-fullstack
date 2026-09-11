@@ -1,9 +1,9 @@
 import { inject, Service } from '@angular/core';
 import { Dialog } from '@angular/cdk/dialog';
-import { TaskFormModal } from '../features/tasks/tasks-page/components/task-form-modal/task-form-modal';
+import { TaskFormModal } from '../tasks-page/components/task-form-modal/task-form-modal';
 import { ITaskFormControls } from '../interfaces/taks-form-controls';
 import { ITask } from '../interfaces/task';
-import { TaskCommentsModal } from '../features/tasks/tasks-page/components/task-comments-modal/task-comments-modal';
+import { TaskCommentsModal } from '../tasks-page/components/task-comments-modal/task-comments-modal';
 
 @Service()
 export class ModalController {

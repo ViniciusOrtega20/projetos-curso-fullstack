@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { ModalController } from '../../../../../services/modal-controller';
+import { ModalController } from '../../../services/modal-controller';
 import { NgOptimizedImage } from '@angular/common';
-import { Task } from '../../../../../services/task';
+import { Task } from '../../../services/task';
 
 @Component({
   imports: [NgOptimizedImage],

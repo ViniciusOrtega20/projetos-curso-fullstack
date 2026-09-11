@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { ITask } from '../interfaces/task';
 import { ITaskFormControls } from '../interfaces/taks-form-controls';
-import { generateUniqueId } from '../utils/generate-unique-id';
-import { TaskStatusEnum } from '../enums/task-status';
+import { generateUniqueId } from '../../../utils/generate-unique-id';
+import { TaskStatusEnum } from '../../../enums/task-status';
 import { TaskStatus } from '../type/task-status';
 import { IComment } from '../interfaces/comments';
 

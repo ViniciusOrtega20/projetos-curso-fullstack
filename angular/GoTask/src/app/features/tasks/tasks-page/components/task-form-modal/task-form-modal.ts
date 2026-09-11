@@ -3,9 +3,9 @@ import { InputForm } from '../../../../../shared/input-form/input-form';
 import { SecondaryButtonForm } from '../../../../../shared/secondary-button-form/secondary-button-form';
 import { PrimaryButtonForm } from '../../../../../shared/primary-button-form/primary-button-form';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { ITaskFormModalData } from '../../../../../interfaces/task-form-modal-data';
+import { ITaskFormModalData } from '../../../interfaces/task-form-modal-data';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ITaskFormControls } from '../../../../../interfaces/taks-form-controls';
+import { ITaskFormControls } from '../../../interfaces/taks-form-controls';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({

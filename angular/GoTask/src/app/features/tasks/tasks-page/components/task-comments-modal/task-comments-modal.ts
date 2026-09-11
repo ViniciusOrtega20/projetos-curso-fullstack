@@ -3,9 +3,9 @@ import { PrimaryButtonForm } from '../../../../../shared/primary-button-form/pri
 import { ComentarioModal } from './components/comentario-modal/comentario-modal';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
-import { ITask } from '../../../../../interfaces/task';
+import { ITask } from '../../../interfaces/task';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IComment } from '../../../../../interfaces/comments';
+import { IComment } from '../../../interfaces/comments';
 import { generateUniqueId } from '../../../../../utils/generate-unique-id';
 
 @Component({

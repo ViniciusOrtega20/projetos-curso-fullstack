@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
-import { ITask } from '../../../../../interfaces/task';
-import { Task } from '../../../../../services/task';
+import { ITask } from '../../../interfaces/task';
+import { Task } from '../../../services/task';
 import { AsyncPipe } from '@angular/common';
 import { TaskColumn } from './components/task-column/task-column';
 import { CdkDropListGroup } from '@angular/cdk/drag-drop';
