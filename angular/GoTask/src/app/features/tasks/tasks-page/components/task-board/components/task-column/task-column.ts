@@ -21,7 +21,7 @@ import { Task } from '../../../../../services/task';
 export class TaskColumn {
   private readonly _taskService = inject(Task);
 
-  statusColor = computed(() => {
+  protected statusColor = computed(() => {
     switch (this.status()) {
       case 'todo':
         return '#080B12';
