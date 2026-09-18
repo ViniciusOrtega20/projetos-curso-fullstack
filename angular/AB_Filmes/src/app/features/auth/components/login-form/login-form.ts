@@ -7,12 +7,14 @@ import {Router} from '@angular/router';
 import {tap} from 'rxjs';
 import {ILoginParams} from '../../../../shared/models/ILoginParams';
 import {setErrorMessage} from '../../../../shared/utils/set-error-message';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
   imports: [
     Field,
-    NgOptimizedImage
+    NgOptimizedImage,
+    FormsModule
   ],
   templateUrl: './login-form.html',
   styleUrl: './login-form.css',
@@ -20,10 +22,7 @@ import {setErrorMessage} from '../../../../shared/utils/set-error-message';
 export class LoginForm {
   private readonly _userApi = inject(UserApi);
   private readonly _router = inject(Router);
-  protected loginModel = signal({
-    email: '',
-    password: ''
-  });
+  protected loginModel = signal<ILoginParams>({email: '', password: ''});
   protected loginParams = signal<ILoginParams | undefined>(undefined);
 
   protected readonly loginError = computed(() => setErrorMessage(this.loginResource.error()));

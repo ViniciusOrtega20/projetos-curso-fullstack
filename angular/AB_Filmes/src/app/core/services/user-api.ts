@@ -4,6 +4,8 @@ import {Observable, tap} from 'rxjs';
 import {IUserTokenSuccessAuth} from '../../shared/models/user-token-sucess-auth';
 import {IUserLoginSuccessResponse} from '../../shared/models/IUserLoginSuccessResponse';
 import {UserTokenStore} from './user-token-store';
+import {IUserRegisterSuccessResponse} from '../../shared/models/IUserRegisterSuccessResponse';
+import {UserInfosStore} from './user-infos-store';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,7 @@ import {UserTokenStore} from './user-token-store';
 export class UserApi {
   private readonly _httpclient = inject(HttpClient);
   private readonly _userTokenStore = inject(UserTokenStore);
+  private readonly _userInfosStore = inject(UserInfosStore);
 
   validateToken(): Observable<IUserTokenSuccessAuth> {
     return this._httpclient.get<IUserTokenSuccessAuth>('http://localhost:3000/users/validate-token');
@@ -21,11 +24,19 @@ export class UserApi {
       email,
       password
     }).pipe(
+      tap(({user: {id, name, email}}) => this._userInfosStore.setUserInfos({
+        id, name, email
+      })),
       tap((loginResponse) => this._userTokenStore.saveToken(loginResponse.token))
     );
   }
 
-  register(username: string, password: string): Observable<Object> {
-    return this._httpclient.get('http://localhost:3000/user/validate-token');
+  register(name: string, email: string, password: string): Observable<IUserRegisterSuccessResponse> {
+    return this._httpclient.post<IUserRegisterSuccessResponse>('http://localhost:3000/users', {
+      name,
+      email,
+      password
+    });
   }
+
 }

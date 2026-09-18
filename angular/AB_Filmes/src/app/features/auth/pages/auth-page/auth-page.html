@@ -6,7 +6,7 @@
     <div class="absolute inset-0 bg-black/40"></div>
 
     <div class="relative z-10">
-      <img src="images/logo.svg" alt="Logo" class="w-12 h-12 mb-4"/>
+      <img ngSrc="/images/logo.svg" alt="Logo" class="mb-4" width="48" height="48"/>
     </div>
 
     <div class="relative z-10 mb-10">
@@ -22,11 +22,15 @@
       <div class="flex bg-[#202024] p-1 rounded-lg">
         <button
           class="flex-1 py-2 text-sm text-gray-400 hover:text-white transition cursor-pointer"
+          routerLink="/auth/login"
+          routerLinkActive="bg-[#2c2c30] rounded text-purple-800 shadow font-medium shadow"
         >
           Login
         </button>
         <button
-          class="flex-1 py-2 text-sm bg-[#2c2c30] rounded text-purple-800 shadow font-medium cursor-pointer"
+          class="flex-1 py-2 text-sm text-gray-400 hover:text-white transition cursor-pointer"
+          routerLink="/auth/register"
+          routerLinkActive="bg-[#2c2c30] rounded text-purple-800 shadow font-medium shadow"
         >
           Cadastro
         </button>
