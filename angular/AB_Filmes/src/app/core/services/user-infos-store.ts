@@ -8,8 +8,6 @@ export class UserInfosStore {
   private readonly USER_NAME_KEY = 'user-name';
   private readonly user = signal<IUserInfos | undefined>(undefined);
 
-  getUserInfos = this.user.asReadonly();
-
   userName = computed(() => {
     const HAS_USER = this.user();
     const userNameLocalStorage = localStorage.getItem(this.USER_NAME_KEY);

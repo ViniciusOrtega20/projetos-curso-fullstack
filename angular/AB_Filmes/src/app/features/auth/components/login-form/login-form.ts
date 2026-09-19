@@ -6,7 +6,7 @@ import {UserApi} from '../../../../core/services/user-api';
 import {Router} from '@angular/router';
 import {tap} from 'rxjs';
 import {ILoginParams} from '../../../../shared/models/ILoginParams';
-import {setErrorMessage} from '../../../../shared/utils/set-error-message';
+import {getErrorMessage} from '../../../../shared/utils/get-error-message';
 import {FormsModule} from '@angular/forms';
 
 @Component({
@@ -25,7 +25,7 @@ export class LoginForm {
   protected loginModel = signal<ILoginParams>({email: '', password: ''});
   protected loginParams = signal<ILoginParams | undefined>(undefined);
 
-  protected readonly loginError = computed(() => setErrorMessage(this.loginResource.error()));
+  protected readonly loginError = computed(() => getErrorMessage(this.loginResource.error()));
   protected loginForm = form(this.loginModel, (fieldPath) => {
     required(fieldPath.email, {message: 'O Email é obrigatório'});
     email(fieldPath.email, {message: 'O Email é inválido'});

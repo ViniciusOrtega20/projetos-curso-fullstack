@@ -1,7 +1,6 @@
 import {Component, computed, inject, signal} from '@angular/core';
 import {UserApi} from '../../../../core/services/user-api';
-import {Router} from '@angular/router';
-import {setErrorMessage} from '../../../../shared/utils/set-error-message';
+import {getErrorMessage} from '../../../../shared/utils/get-error-message';
 import {email, Field, form, minLength, required} from '@angular/forms/signals';
 import {rxResource} from '@angular/core/rxjs-interop';
 import {IRegisterParams} from '../../../../shared/models/IRegisterParams';
@@ -21,13 +20,12 @@ import {FormsModule} from '@angular/forms';
 })
 export class RegisterUserForm {
   private readonly _userApi = inject(UserApi);
-  private readonly _router = inject(Router);
   protected registerModel = signal<IRegisterParams>({name: '', email: '', password: '', confirmPassword: ''});
   protected registerParams = signal<IRegisterParams | undefined>(undefined);
   protected successMessage = computed(() => {
     return this.registerResource.hasValue() ? 'Usuário cadastrado com sucesso!' : undefined
   })
-  protected readonly registerError = computed(() => setErrorMessage(this.registerResource.error()));
+  protected readonly registerError = computed(() => getErrorMessage(this.registerResource.error()));
 
   protected registerForm = form(this.registerModel, (fieldPath) => {
     required(fieldPath.name, {message: 'O Nome é obrigatório'});
