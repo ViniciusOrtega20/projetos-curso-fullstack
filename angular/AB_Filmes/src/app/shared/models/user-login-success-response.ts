@@ -1,4 +1,4 @@
-export interface IUserLoginSuccessResponse {
+export interface UserLoginSuccessResponse {
   token: string;
   user: {
     id: number;

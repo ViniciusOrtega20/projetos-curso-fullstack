@@ -1,4 +1,4 @@
-import {Component, inject, linkedSignal} from '@angular/core';
+import {Component, inject, linkedSignal, ChangeDetectionStrategy} from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
 import {UserTokenStore} from '../../core/services/user-token-store';
 import {NavigationEnd, Router, RouterLink, RouterLinkActive} from '@angular/router';
@@ -14,6 +14,7 @@ import {filter} from 'rxjs';
     RouterLinkActive
   ],
   templateUrl: './header.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './header.css',
 })
 export class Header {

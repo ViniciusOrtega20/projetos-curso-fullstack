@@ -12,8 +12,8 @@
 
         <button
           type="button"
-          (click)="adicionarFilme()"
           class="flex items-center gap-2 px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg transition text-sm whitespace-nowrap cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-[#121214]"
+          routerLink="/create"
         >
           <svg
             aria-hidden="true"
@@ -32,7 +32,7 @@
       <app-movies-filter [(title)]="movieTitleFilter" [(category)]="movieCategoryFilter"/>
     </div>
 
-    @if (moviesFiltered().length === 0) {
+    @if (moviesFiltered().length === 0 && moviesResource.isLoading()) {
       <div class="flex-1 flex flex-col items-center justify-center text-center p-8">
         <img
           ngSrc="/images/my-movies.svg"

@@ -1,21 +1,29 @@
 import {HttpErrorResponse} from '@angular/common/http';
 
 export function getErrorMessage(error: Error | undefined): string {
-  const cause = error?.cause as HttpErrorResponse;
+  if (error == null) return '';
 
-  if (!cause) return '';
+  let httpError: unknown = error;
 
-  switch (cause.status) {
+  if (error instanceof Error && !(error instanceof HttpErrorResponse)) {
+    httpError = error.cause;
+  }
+
+  if (!(httpError instanceof HttpErrorResponse)) {
+    return 'Ocorreu um erro inesperado.';
+  }
+
+  switch (httpError.status) {
     case 0:
       return 'Sem conexão com a internet ou servidor offline.';
 
     case 401:
-      return cause.error?.message ?? 'Email ou senha inválidos.';
+      return httpError.error?.message ?? 'Email ou senha inválidos.';
 
     case 500:
       return 'Ocorreu um erro interno no servidor.';
 
     default:
-      return cause.error?.message ?? 'Ocorreu um erro inesperado ao tentar acessar.';
+      return httpError.error?.message ?? 'Ocorreu um erro inesperado ao tentar acessar.';
   }
 }

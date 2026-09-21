@@ -1,8 +1,8 @@
 import {ApplicationConfig, provideBrowserGlobalErrorListeners} from '@angular/core';
-import {provideRouter} from '@angular/router';
+import {provideRouter, withComponentInputBinding} from '@angular/router';
 
 import {routes} from './app.routes';
-import {provideHttpClient, withInterceptors} from '@angular/common/http';
+import {provideHttpClient, withInterceptors, withXhr} from '@angular/common/http';
 import {authInterceptor} from './core/interceptors/auth-interceptor';
 import {registerLocaleData} from '@angular/common';
 
@@ -13,7 +13,7 @@ registerLocaleData(pt);
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptor]))
+    provideRouter(routes, withComponentInputBinding()),
+    provideHttpClient(withXhr(), withInterceptors([authInterceptor]))
   ]
 };

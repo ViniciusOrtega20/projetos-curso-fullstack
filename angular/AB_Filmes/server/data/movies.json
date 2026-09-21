@@ -6,8 +6,8 @@
     "genero": "Sci-Fi",
     "anoLancamento": 2021,
     "caminhoImagem": "/uploads/image-1765666339432-345152340.jpg",
-    "qtdVotos": 105,
-    "mediaVotos": 3.3457
+    "qtdVotos": 115,
+    "mediaVotos": 3.4895
   },
   {
     "id": 1765666870211,
@@ -16,7 +16,27 @@
     "genero": "Sci-Fi",
     "anoLancamento": 2014,
     "caminhoImagem": "/uploads/image-1765666870177-14156342.jpg",
-    "qtdVotos": 188,
-    "mediaVotos": 4.8421
+    "qtdVotos": 205,
+    "mediaVotos": 4.8211
+  },
+  {
+    "id": 1792192402177,
+    "titulo": "teste 2",
+    "descricao": "testando",
+    "genero": "teste",
+    "anoLancamento": 2026,
+    "caminhoImagem": "/uploads/image-1792192401973-166550504.jpeg",
+    "qtdVotos": 1,
+    "mediaVotos": 5
+  },
+  {
+    "id": 1792192904389,
+    "titulo": "TI",
+    "descricao": "Testando TI",
+    "genero": "teste TI",
+    "anoLancamento": 2015,
+    "caminhoImagem": "/uploads/image-1792192904374-511649535.png",
+    "qtdVotos": 0,
+    "mediaVotos": 0
   }
 ]

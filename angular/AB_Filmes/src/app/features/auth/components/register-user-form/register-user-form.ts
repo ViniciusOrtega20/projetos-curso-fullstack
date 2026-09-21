@@ -1,9 +1,9 @@
 import {Component, computed, inject, signal} from '@angular/core';
 import {UserApi} from '../../../../core/services/user-api';
 import {getErrorMessage} from '../../../../shared/utils/get-error-message';
-import {email, Field, form, minLength, required} from '@angular/forms/signals';
+import {email, form, FormField, minLength, required} from '@angular/forms/signals';
 import {rxResource} from '@angular/core/rxjs-interop';
-import {IRegisterParams} from '../../../../shared/models/IRegisterParams';
+import {RegisterParams} from '../../../../shared/models/register-params';
 import {NgOptimizedImage} from '@angular/common';
 import {confirmPassword} from '../../validators/confirmPassword';
 import {FormsModule} from '@angular/forms';
@@ -12,7 +12,7 @@ import {FormsModule} from '@angular/forms';
   selector: 'app-register-user-form',
   imports: [
     NgOptimizedImage,
-    Field,
+    FormField,
     FormsModule
   ],
   templateUrl: './register-user-form.html',
@@ -20,11 +20,9 @@ import {FormsModule} from '@angular/forms';
 })
 export class RegisterUserForm {
   private readonly _userApi = inject(UserApi);
-  protected registerModel = signal<IRegisterParams>({name: '', email: '', password: '', confirmPassword: ''});
-  protected registerParams = signal<IRegisterParams | undefined>(undefined);
-  protected successMessage = computed(() => {
-    return this.registerResource.hasValue() ? 'Usuário cadastrado com sucesso!' : undefined
-  })
+  protected registerModel = signal<RegisterParams>({name: '', email: '', password: '', confirmPassword: ''});
+  protected registerParams = signal<RegisterParams | undefined>(undefined);
+  protected successMessage = computed(() => this.registerResource.hasValue() ? 'Usuário cadastrado com sucesso!' : undefined);
   protected readonly registerError = computed(() => getErrorMessage(this.registerResource.error()));
 
   protected registerForm = form(this.registerModel, (fieldPath) => {

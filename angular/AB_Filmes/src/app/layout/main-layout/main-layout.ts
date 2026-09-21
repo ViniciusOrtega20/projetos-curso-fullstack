@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {Header} from '../header/header';
 import {RouterOutlet} from '@angular/router';
 
@@ -9,6 +9,7 @@ import {RouterOutlet} from '@angular/router';
     RouterOutlet
   ],
   templateUrl: './main-layout.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './main-layout.css',
 })
 export class MainLayout {

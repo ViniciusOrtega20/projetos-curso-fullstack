@@ -15,7 +15,7 @@
     >
       <img ngSrc="/images/username.svg" class="mr-3 opacity-50" width="20" height="20" alt="Username"/>
       <input
-        [field]="registerForm.name"
+        [formField]="registerForm.name"
         placeholder="Nome"
         class="bg-transparent outline-none text-white w-full placeholder-gray-500"
       />
@@ -29,7 +29,7 @@
     >
       <img ngSrc="/images/email.svg" class="mr-3 opacity-50" width="20" height="20" alt="Email"/>
       <input
-        [field]="registerForm.email"
+        [formField]="registerForm.email"
         placeholder="E-mail"
         class="bg-transparent outline-none text-white w-full placeholder-gray-500"
       />
@@ -43,7 +43,7 @@
     >
       <img ngSrc="/images/password.svg" class="mr-3 opacity-50" width="20" height="20" alt="Password"/>
       <input
-        [field]="registerForm.password"
+        [formField]="registerForm.password"
         placeholder="Senha"
         type="password"
         class="bg-transparent outline-none text-white w-full placeholder-gray-500"
@@ -58,7 +58,7 @@
     >
       <img ngSrc="/images/password.svg" class="mr-3 opacity-50" width="20" height="20" alt="confirm password"/>
       <input
-        [field]="registerForm.confirmPassword"
+        [formField]="registerForm.confirmPassword"
         placeholder="Confirme a senha"
         type="password"
         class="bg-transparent outline-none text-white w-full placeholder-gray-500"
