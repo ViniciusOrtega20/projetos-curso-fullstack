@@ -3,7 +3,7 @@ import {UserApi} from '../../../../core/services/user-api';
 import {getErrorMessage} from '../../../../shared/utils/get-error-message';
 import {email, Field, form, minLength, required} from '@angular/forms/signals';
 import {rxResource} from '@angular/core/rxjs-interop';
-import {IRegisterParams} from '../../../../shared/models/IRegisterParams';
+import {RegisterParams} from '../../../../shared/models/register-params';
 import {NgOptimizedImage} from '@angular/common';
 import {confirmPassword} from '../../validators/confirmPassword';
 import {FormsModule} from '@angular/forms';
@@ -20,8 +20,8 @@ import {FormsModule} from '@angular/forms';
 })
 export class RegisterUserForm {
   private readonly _userApi = inject(UserApi);
-  protected registerModel = signal<IRegisterParams>({name: '', email: '', password: '', confirmPassword: ''});
-  protected registerParams = signal<IRegisterParams | undefined>(undefined);
+  protected registerModel = signal<RegisterParams>({name: '', email: '', password: '', confirmPassword: ''});
+  protected registerParams = signal<RegisterParams | undefined>(undefined);
   protected successMessage = computed(() => {
     return this.registerResource.hasValue() ? 'Usuário cadastrado com sucesso!' : undefined
   })

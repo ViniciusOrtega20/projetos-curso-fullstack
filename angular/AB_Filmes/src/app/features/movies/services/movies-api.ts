@@ -1,6 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {MoviesListResponse} from '../../../shared/types/movies-list-response';
+import {IMovieResponse} from '../../../shared/models/movie-response';
 
 @Injectable({
   providedIn: 'root'
@@ -10,5 +11,13 @@ export class MoviesApi {
 
   getMovies() {
     return this._httpClient.get<MoviesListResponse>('http://localhost:3000/movies');
+  }
+
+  getMovieDetails(id: number) {
+    return this._httpClient.get<IMovieResponse>(`http://localhost:3000/movies/${id}`);
+  }
+
+  setRateMovie(id: number, rating: number) {
+    return this._httpClient.post<IMovieResponse>(`http://localhost:3000/movies/${id}/rate`, {rating});
   }
 }

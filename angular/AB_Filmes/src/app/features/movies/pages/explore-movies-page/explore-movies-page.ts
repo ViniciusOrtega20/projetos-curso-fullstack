@@ -42,14 +42,9 @@ export class ExploreMoviesPage {
       const matchesTitle = movie.titulo.toLowerCase().includes(titleFilter);
       const matchesCategory = movie.genero.toLowerCase().includes(categoryFilter);
 
-      console.log('matchesTitle: ', matchesTitle);
-      console.log('matchesCategory: ', matchesCategory);
       return matchesTitle && matchesCategory;
     });
   });
-
-  adicionarFilme() {
-  }
 
   clearFilters() {
     this.movieTitleFilter.set('');

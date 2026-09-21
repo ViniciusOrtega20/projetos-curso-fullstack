@@ -1,60 +1,103 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import {Component, computed, inject, input, linkedSignal, signal} from '@angular/core';
+import {MoviesApi} from '../../services/movies-api';
+import {rxResource} from '@angular/core/rxjs-interop';
+import {DecimalPipe, NgOptimizedImage} from '@angular/common';
+import {tap} from 'rxjs';
+import {FavoritesApi} from '../../../../shared/services/favorites-api';
 
 @Component({
   selector: 'app-movie-details',
-  imports: [],
+  imports: [
+    NgOptimizedImage,
+    DecimalPipe
+  ],
   templateUrl: './movie-details-page.html',
   styleUrl: './movie-details-page.css',
 })
 export class MovieDetailsPage {
-  reviewsCount = 5;
-  // Apenas uma array de 5 elementos para o @for loop
-  stars = new Array(5);
+  private readonly _moviesApi = inject(MoviesApi);
+  private readonly _favoritesApi = inject(FavoritesApi);
+  readonly BASE_URL = 'http://localhost:3000';
 
-  // Sinais para controle de estado
-  isFavorite: WritableSignal<boolean> = signal(false);
-  currentRating: WritableSignal<number> = signal(4); // Inicia com 4 estrelas preenchidas
+  protected id = input.required<string>();
 
-  constructor() {}
+  protected currentRating = signal<number | undefined>(undefined); // Inicia com 4 estrelas preenchidas
 
-  /**
-   * Verifica se a estrela em um dado índice deve estar preenchida (roxa).
-   * Substitui o [ngClass] no template.
-   */
-  isStarFilled(index: number): boolean {
-    // O índice (base 0) deve ser menor que o rating (base 1) para ser preenchido
-    return index < this.currentRating();
-  }
+  protected startStatusFlled = computed(() => {
+    const rating = this.currentRating() ?? 0;
+    return [0, 1, 2, 3, 4].map((index) => index < rating);
+  });
 
-  /**
-   * Alterna o estado de favorito do filme.
-   */
-  toggleFavorite() {
-    this.isFavorite.update((value) => !value);
-    console.log(`Filme agora é favorito: ${this.isFavorite()}`);
-  }
+  protected rateMovieResource = rxResource({
+    params: () => {
+      const rating = this.currentRating() ?? 0;
+      if (rating > 0) return {
+        id: Number(this.id()),
+        rating: this.currentRating() ?? 0,
+      };
 
-  /**
-   * Define o rating do filme baseado no clique na estrela.
-   */
-  setRating(event: MouseEvent) {
-    const target = event.target as SVGElement;
+      return undefined;
+    },
+    stream: ({params}) => this._moviesApi.setRateMovie(params.id, params.rating).pipe(
+      tap((updateMovie) => {
+        this.movieDetails.set(updateMovie);
+      })
+    ),
+  });
 
-    // Encontra o elemento SVG que tem o data-rating
-    const ratingElement = target.closest('svg');
+  isMovieFavoriteResource = rxResource({
+    params: () => this.id(),
+    stream: ({params}) => this._favoritesApi.isMovieInFavorites(Number(params)),
+  });
 
-    if (ratingElement) {
-      const newRating = parseInt(ratingElement.getAttribute('data-rating') || '0', 10);
+  protected isFavorite = linkedSignal(() => {
+    const ERROR_ON_RESPONSE = !!this.isMovieFavoriteResource.error();
 
-      // Lógica de toggle: se clicar na estrela atual, zera. Senão, define o novo rating.
-      if (newRating === this.currentRating()) {
-        this.currentRating.set(0);
-      } else {
-        this.currentRating.set(newRating);
+    if (ERROR_ON_RESPONSE) return false;
+
+    return this.isMovieFavoriteResource.value() ?? false;
+  });
+
+
+  protected movieDetailsResource = rxResource({
+    params: () => this.id(),
+    stream: ({params}) => this._moviesApi.getMovieDetails(Number(params)),
+  });
+
+  protected movieDetails = linkedSignal(() => {
+    if (this.movieDetailsResource.error()) {
+      return undefined;
+    }
+
+    return this.movieDetailsResource.value();
+  });
+
+  toggleFavoriteParams = signal<boolean | undefined>(undefined)
+
+  toggleMovieFavoriteResource = rxResource({
+    params: () => {
+      const status = this.toggleFavoriteParams();
+      if (status === undefined) return undefined;
+
+      return {
+        currentFavoriteStatus: status,
+        movieId: Number(this.id()),
       }
+    },
+    stream: ({params}) => this._favoritesApi.toggleMovieFavorite(params.currentFavoriteStatus, params.movieId).pipe(tap(() => this.isFavorite.update(currentValue => !currentValue))),
+  });
 
-      console.log(`Nova avaliação definida: ${this.currentRating()}`);
-      // Lógica de backend iria aqui
+  protected toggleFavorite() {
+    this.toggleFavoriteParams.set(this.isFavorite());
+  }
+
+  protected updateRating(newRating: number) {
+    if (newRating === this.currentRating()) {
+      this.currentRating.set(0);
+    } else {
+      this.currentRating.set(newRating);
     }
   }
+
+
 }

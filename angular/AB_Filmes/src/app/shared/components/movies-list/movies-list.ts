@@ -1,12 +1,14 @@
 import {Component, input} from '@angular/core';
 import {MoviesListResponse} from '../../types/movies-list-response';
 import {DecimalPipe, NgOptimizedImage} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-movies-list',
   imports: [
     NgOptimizedImage,
-    DecimalPipe
+    DecimalPipe,
+    RouterLink
   ],
   templateUrl: './movies-list.html',
   styleUrl: './movies-list.css',

@@ -5,7 +5,7 @@ import {rxResource} from '@angular/core/rxjs-interop';
 import {UserApi} from '../../../../core/services/user-api';
 import {Router} from '@angular/router';
 import {tap} from 'rxjs';
-import {ILoginParams} from '../../../../shared/models/ILoginParams';
+import {LoginParams} from '../../../../shared/models/login-params';
 import {getErrorMessage} from '../../../../shared/utils/get-error-message';
 import {FormsModule} from '@angular/forms';
 
@@ -22,8 +22,8 @@ import {FormsModule} from '@angular/forms';
 export class LoginForm {
   private readonly _userApi = inject(UserApi);
   private readonly _router = inject(Router);
-  protected loginModel = signal<ILoginParams>({email: '', password: ''});
-  protected loginParams = signal<ILoginParams | undefined>(undefined);
+  protected loginModel = signal<LoginParams>({email: '', password: ''});
+  protected loginParams = signal<LoginParams | undefined>(undefined);
 
   protected readonly loginError = computed(() => getErrorMessage(this.loginResource.error()));
   protected loginForm = form(this.loginModel, (fieldPath) => {

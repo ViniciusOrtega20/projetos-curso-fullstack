@@ -2,9 +2,9 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, tap} from 'rxjs';
 import {IUserTokenSuccessAuth} from '../../shared/models/user-token-sucess-auth';
-import {IUserLoginSuccessResponse} from '../../shared/models/IUserLoginSuccessResponse';
+import {UserLoginSuccessResponse} from '../../shared/models/user-login-success-response';
 import {UserTokenStore} from './user-token-store';
-import {IUserRegisterSuccessResponse} from '../../shared/models/IUserRegisterSuccessResponse';
+import {UserRegisterSuccessResponse} from '../../shared/models/user-register-success-response';
 import {UserInfosStore} from './user-infos-store';
 
 @Injectable({
@@ -19,8 +19,8 @@ export class UserApi {
     return this._httpclient.get<IUserTokenSuccessAuth>('http://localhost:3000/users/validate-token');
   }
 
-  login(email: string, password: string): Observable<IUserLoginSuccessResponse> {
-    return this._httpclient.post<IUserLoginSuccessResponse>('http://localhost:3000/users/login', {
+  login(email: string, password: string): Observable<UserLoginSuccessResponse> {
+    return this._httpclient.post<UserLoginSuccessResponse>('http://localhost:3000/users/login', {
       email,
       password
     }).pipe(
@@ -31,8 +31,8 @@ export class UserApi {
     );
   }
 
-  register(name: string, email: string, password: string): Observable<IUserRegisterSuccessResponse> {
-    return this._httpclient.post<IUserRegisterSuccessResponse>('http://localhost:3000/users', {
+  register(name: string, email: string, password: string): Observable<UserRegisterSuccessResponse> {
+    return this._httpclient.post<UserRegisterSuccessResponse>('http://localhost:3000/users', {
       name,
       email,
       password
