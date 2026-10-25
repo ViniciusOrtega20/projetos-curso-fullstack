@@ -1,0 +1,51 @@
+import {Component, computed, inject, signal} from '@angular/core';
+import {UserApi} from '../../../../core/services/user-api';
+import {getErrorMessage} from '../../../../shared/utils/get-error-message';
+import {email, form, FormField, minLength, required} from '@angular/forms/signals';
+import {rxResource} from '@angular/core/rxjs-interop';
+import {RegisterParams} from '../../../../shared/models/register-params';
+import {NgOptimizedImage} from '@angular/common';
+import {confirmPassword} from '../../validators/confirmPassword';
+import {FormsModule} from '@angular/forms';
+
+@Component({
+  selector: 'app-register-user-form',
+  imports: [
+    NgOptimizedImage,
+    FormField,
+    FormsModule
+  ],
+  templateUrl: './register-user-form.html',
+  styleUrl: './register-user-form.css',
+})
+export class RegisterUserForm {
+  private readonly _userApi = inject(UserApi);
+  protected registerModel = signal<RegisterParams>({name: '', email: '', password: '', confirmPassword: ''});
+  protected registerParams = signal<RegisterParams | undefined>(undefined);
+  protected successMessage = computed(() => this.registerResource.hasValue() ? 'Usuário cadastrado com sucesso!' : undefined);
+  protected readonly registerError = computed(() => getErrorMessage(this.registerResource.error()));
+
+  protected registerForm = form(this.registerModel, (fieldPath) => {
+    required(fieldPath.name, {message: 'O Nome é obrigatório'});
+
+    required(fieldPath.email, {message: 'O Email é obrigatório'});
+    email(fieldPath.email, {message: 'O Email é inválido'});
+
+    required(fieldPath.password, {message: 'A senha é obrigatório'});
+    minLength(fieldPath.password, 8, {message: 'A senha deve ter no mínimo 8 caracteres'});
+
+    confirmPassword(fieldPath.password, fieldPath.confirmPassword);
+  });
+
+  protected registerResource = rxResource({
+    params: () => this.registerParams(),
+    stream: ({params}) => this._userApi.register(params.name, params.email, params.password)
+  });
+
+  protected register() {
+    const credentials = this.registerForm().value();
+
+    this.registerParams.set(credentials);
+  }
+
+}

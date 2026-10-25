@@ -1,0 +1,239 @@
+<div class="min-h-screen bg-pastel-green p-4 md:p-8 flex items-center justify-center">
+  <div
+    class="max-w-2xl w-full bg-white rounded-2xl md:rounded-3xl shadow-xl p-6 md:p-10 border border-stone-100"
+  >
+    <header class="mb-8 text-center">
+      <h1 class="text-2xl md:text-3xl font-bold text-stone-800">Cadastro do Pet 🐾</h1>
+      <p class="text-sm md:text-base text-stone-500 mt-2">
+        Encontre um novo lar para seu amiguinho.
+      </p>
+    </header>
+
+    <form #petForm="ngForm" (ngSubmit)="onSubmit(petForm)" class="space-y-8">
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <div class="flex flex-col gap-1.5">
+            <label class="ml-1 text-sm font-bold text-stone-500 flex items-center gap-2" for="petName">
+              <span class="w-1.5 h-1.5 rounded-full bg-sage"></span>
+              Nome do Pet
+            </label>
+            <input type="text" class="form-input" placeholder="Como ele se chama?" name="petName" ngModel #petName="ngModel" required minlength="3" />
+            @if(petName.invalid && (petName.dirty || petName.touched || petForm.submitted)){
+              @if (petName.errors?.['required']) {
+                <p class="error-message">
+                  🐾 O nome é obrigatório (mín. 3 letras).
+                </p>
+              } @else if (petName.hasError('minlength')) {
+                <p class="error-message">
+                  🐾 O nome deve ter no mínimo 3 letras.
+                </p>
+              }
+            }
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex flex-col gap-1.5">
+              <select class="form-input" name="species" ngModel #species="ngModel" required>
+                <option value="" disabled selected>Espécie</option>
+                <option value="Cão">Cão</option>
+                <option value="Gato">Gato</option>
+                <option value="Pássaro">Pássaro</option>
+              </select>
+              @if (species.invalid && (species.dirty || species.touched || petForm.submitted)) {
+                <p class="error-message">
+                  🐾 A espécie é obrigatória.
+                </p>
+              }
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <input type="number" class="form-input" placeholder="Idade (anos)" name="age" ngModel #age="ngModel" required min="0" max="30"/>
+              @if(age.invalid && (age.dirty || age.touched || petForm.submitted)){
+                @if (age.hasError('required')) {
+                  <p class="error-message">
+                    🐾 A idade é obrigatória (0-30 anos).
+                  </p>
+                } @else if (age.hasError('min') || age.hasError('max')) {
+                  <p class="error-message">
+                    🐾 A idade deve estar entre 0 e 30 anos.
+                  </p>
+                }
+              }
+            </div>
+          </div>
+        </div>
+        <div
+          class="p-4 md:p-6 bg-pastel-green/40 rounded-2xl md:rounded-4xl border border-stone-100 space-y-6"
+        >
+          <p
+            class="text-[10px] md:text-xs font-black uppercase tracking-widest text-stone-400 mb-2"
+          >
+            Saúde & Comportamento
+          </p>
+
+          <label class="flex items-center gap-3 cursor-pointer w-fit">
+            <input
+              type="checkbox"
+              class="w-5 h-5 accent-sage text-sage border-stone-300 rounded focus:ring-sage"
+              name="vaccinated"
+              ngModel
+            />
+            <span class="text-sm text-stone-700 font-bold">Pet já está vacinado?</span>
+          </label>
+
+          <div>
+            <label class="block text-sm font-bold text-stone-500 mb-3" for="size">Porte do Pet</label>
+            <div class="flex flex-wrap gap-6">
+              <label
+                class="flex items-center gap-2 cursor-pointer text-sm text-stone-600 font-medium"
+              >
+                <input type="radio" class="form-radio" name="size" #size="ngModel" ngModel value="'small'" required />
+                Pequeno
+              </label>
+              <label
+                class="flex items-center gap-2 cursor-pointer text-sm text-stone-600 font-medium"
+              >
+                <input type="radio" class="form-radio" name="size" #size="ngModel" ngModel value="'medium'" required />
+                Médio
+              </label>
+              <label
+                class="flex items-center gap-2 cursor-pointer text-sm text-stone-600 font-medium"
+              >
+                <input type="radio" class="form-radio" name="size" #size="ngModel" ngModel value="'large'" required />
+                Grande
+              </label>
+            </div>
+            <div class="mt-1.5">
+              @if (size.invalid && (size.dirty || size.touched || petForm.submitted)) {
+                <p class="error-message">
+                  🐾 O porte do pet é obrigatório.
+                </p>
+              }
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-bold text-stone-500 mb-3" for="temperament">Temperamento</label>
+            <div class="flex flex-wrap gap-6" ngModelGroup="temperament">
+              <label
+                class="flex items-center gap-2 cursor-pointer text-sm text-stone-600 font-medium"
+              >
+                <input
+                  type="checkbox"
+                  class="w-4 h-4 accent-sage rounded border-stone-300 focus:ring-sage"
+                  name="docile"
+                  ngModel
+                />
+                Dócil
+              </label>
+              <label
+                class="flex items-center gap-2 cursor-pointer text-sm text-stone-600 font-medium"
+              >
+                <input
+                  type="checkbox"
+                  class="w-4 h-4 accent-sage rounded border-stone-300 focus:ring-sage"
+                  name="active"
+                  ngModel
+                />
+                Agitado
+              </label>
+              <label
+                class="flex items-center gap-2 cursor-pointer text-sm text-stone-600 font-medium"
+              >
+                <input
+                  type="checkbox"
+                  class="w-4 h-4 accent-sage rounded border-stone-300 focus:ring-sage"
+                  name="protective"
+                  ngModel
+                />
+                Protetor
+              </label>
+              @if (false) {
+                <p class="error-message">
+                  🐾 Pelo menos um temperamento deve ser selecionado.
+                </p>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="p-4 md:p-6 bg-stone-50 rounded-2xl md:rounded-4xl border border-stone-200 space-y-4"
+        >
+          <p
+            class="text-[10px] md:text-xs font-black uppercase tracking-widest text-stone-400 mb-2"
+          >
+            Informações do Abrigo
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" ngModelGroup="shelterInfo">
+            <div class="flex flex-col gap-1.5">
+              <input type="text" class="form-input" placeholder="Nome do Abrigo" name="shelterName" ngModel #shelterName="ngModel" required appShelterNameValidator />
+              @if (shelterName.pending) {
+                <p class="warning-message">
+                  🐾 Verificando a disponibilidade do abrigo...
+                </p>
+              }
+
+              @if (shelterName.invalid && (shelterName.dirty || shelterName.touched || petForm.submitted)) {
+                @if (shelterName.errors?.['required']) {
+                  <p class="error-message">
+                    🐾 O abrigo é obrigatório.
+                  </p>
+                } @else if (shelterName.errors?.['shelterNameExists']) {
+                  <p class="error-message">
+                    🐾 O abrigo não está disponível para cadastro.
+                  </p>
+
+                }
+              }
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <input type="text" class="form-input" placeholder="Cidade (Ex: São Paulo)" name="city" ngModel #city="ngModel" required/>
+              @if (city.invalid && (city.dirty || city.touched || petForm.submitted)) {
+                <p class="error-message">
+                  🐾 A cidade é obrigatória.
+                </p>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="ml-1 text-sm font-bold text-stone-500 flex items-center gap-2" for="bio">
+            <span class="w-1.5 h-1.5 rounded-full bg-sage"></span>
+            Bio do Pet
+          </label>
+          <textarea
+            rows="4"
+            class="form-input resize-none"
+            placeholder="Conte um pouco sobre a história e as necessidades do pet..."
+            name="bio"
+            ngModel
+            #bio="ngModel"
+            maxlength="200"
+            required
+          ></textarea>
+          @if (bio.invalid && (bio.dirty || bio.touched || petForm.submitted)) {
+            <p class="error-message">
+              🐾 A bio é obrigatória.
+            </p>
+          }
+        </div>
+      </div>
+
+      <div
+        class="mt-10 flex flex-col-reverse md:flex-row justify-between items-center gap-4 border-t border-stone-100 pt-8"
+      >
+        <button
+          type="button"
+          class="text-stone-400 hover:text-stone-600 underline text-sm md:text-base cursor-pointer font-medium transition-colors"
+          (click)="petForm.resetForm({species: ''})"
+        >
+          Limpar formulário
+        </button>
+        <button type="submit" class="btn-primary w-full md:w-auto" [disabled]="petForm.invalid">
+          Salvar Cadastro
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
